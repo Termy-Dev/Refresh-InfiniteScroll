@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- REFRESH -->  
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+
+  <!-- Content -->  
+  <ion-card *ngFor="let item of feeds">
+    <ion-img [src]="item.imageUrl"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ item.creator.nickname }}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{item.message}}
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <!-- Infinite Scroll -->  
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
+
+  
+</ion-content>
